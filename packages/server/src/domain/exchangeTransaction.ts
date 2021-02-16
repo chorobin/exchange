@@ -1,4 +1,4 @@
-import { ExchangeRate } from "./ExchangeRate";
+import { ExchangeRate } from "./exchangeRate";
 import { Money } from "./money";
 
 export interface ExchangeTransaction {

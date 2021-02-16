@@ -6,18 +6,26 @@ import { currencies } from './application/currencies';
 import { fetchCurrencies } from './infrastructure/fetchCurrencies';
 import { fetchExchangeRates } from './infrastructure/fetchExchangeRates';
 import { saveExanchangeTransaction } from './infrastructure/saveExchangeTransaction';
+import { stats } from './application/stats';
+import { getExchangedTransactions } from './infrastructure/getExchangeTransations';
 
 const schema = buildSchema(`
+    type Stats {
+        popularCurrency: String!
+        totalExchangedInUSD: Float!
+        exchangedCount: Int!
+    }
     type Query {
-        currencies: [String]
+        currencies: [String!]!
+        stats: Stats!
     }
     input MoneyInput {
         amount: Float!
         currency: String!
     }
     type MoneyOutput {
-        amount: Float
-        currency: String
+        amount: Float!
+        currency: String!
     }
     type Mutation {
         exchange(money: MoneyInput, targetCurrency: String): MoneyOutput
@@ -26,7 +34,8 @@ const schema = buildSchema(`
 
 const root =  {
   exchange: (params) => exchange(params, fetchExchangeRates, saveExanchangeTransaction),
-  currencies: () => currencies(fetchCurrencies)
+  currencies: () => currencies(fetchCurrencies),
+  stats: () => stats(getExchangedTransactions)
 };
 
 const app = express();

@@ -1,4 +1,4 @@
-import { exchangeMoney, ExchangeRate } from "../domain/ExchangeRate";
+import { exchangeMoney, ExchangeRate } from "../domain/exchangeRate";
 import { ExchangeTransaction, newTransaction } from "../domain/exchangeTransaction";
 import { Money } from "../domain/money";
 

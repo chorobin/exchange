@@ -1,4 +1,4 @@
-import { ExchangeRate } from "../domain/ExchangeRate";
+import { ExchangeRate } from "../domain/exchangeRate";
 
 import fetch from 'node-fetch';
 
