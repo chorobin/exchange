@@ -1,4 +1,3 @@
-# Quick start
 You can run this project via docker
 
 docker-compose up
