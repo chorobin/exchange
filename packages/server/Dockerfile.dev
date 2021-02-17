@@ -8,5 +8,6 @@ COPY "packages/server/package.json" "packages/server/package.json"
 RUN yarn install
 
 COPY . ./
+RUN yarn run lerna bootstrap
 EXPOSE 4000
-CMD ["yarn", "run", "lerna", "run", "start", "--parallel"]
+CMD ["yarn", "run", "lerna", "run", "start", "--parallel", "--scope=server"]

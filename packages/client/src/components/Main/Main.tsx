@@ -1,9 +1,7 @@
-import { Center, Grid, Heading, Text, Button, Input } from '@chakra-ui/react';
+import { Center, Grid } from '@chakra-ui/react';
 import * as React from 'react';
-import { useQueryClient } from 'react-query';
 import { useExchange } from '../../hooks/useExchange';
 import { useFetchExchange } from '../../hooks/useFetchExchange';
-import { Currencies } from '../Currencies/Currencies';
 import { Exchange } from '../Exchange/Exchange';
 import { ExchangeCount } from '../ExchangeCount/ExchangeCount';
 import { ExchangedInUSD } from '../ExchangeInUSD/ExchangeInUSD';

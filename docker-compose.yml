@@ -9,3 +9,12 @@ services:
     volumes:
       - '.:/app'
       - '/app/node_modules'
+  client:
+    build:
+      context: .
+      dockerfile: packages/client/Dockerfile.dev
+    ports:
+      - 4040:4040
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'

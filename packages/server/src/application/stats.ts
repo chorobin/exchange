@@ -1,5 +1,5 @@
-import { ExchangeTransaction } from '../domain/exchangeTransaction';
 import currency from 'currency.js';
+import { ExchangeTransaction } from '../domain/exchangeTransaction';
 
 interface Stats {
     readonly popularCurrency: string;
