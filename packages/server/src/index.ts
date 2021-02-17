@@ -1,4 +1,5 @@
-import * as express from 'express';
+import express from 'express';
+import cors from 'cors';
 import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
 import { exchange } from './application/exchange';
@@ -32,18 +33,22 @@ const schema = buildSchema(`
     }
 `);
 
-const root =  {
-  exchange: (params) => exchange(params, fetchExchangeRates, saveExanchangeTransaction),
-  currencies: () => currencies(fetchCurrencies),
-  stats: () => stats(getExchangedTransactions)
+const root = {
+    exchange: (params) => exchange(params, fetchExchangeRates, saveExanchangeTransaction),
+    currencies: () => currencies(fetchCurrencies),
+    stats: () => stats(getExchangedTransactions),
 };
 
 const app = express();
 
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
-}));
+app.use(cors());
+app.use(
+    '/graphql',
+    graphqlHTTP({
+        schema: schema,
+        rootValue: root,
+        graphiql: true,
+    }),
+);
 
 app.listen(4000);

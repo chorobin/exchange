@@ -1,0 +1,13 @@
+{
+    "files": [],
+    "references": [
+      { "path": "./packages/client/tsconfig.json" },
+      { "path": "./packages/server/tsconfig.json" },
+    ],
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es5",
+      "esModuleInterop": true,
+      "jsx": "react"
+    }
+  }

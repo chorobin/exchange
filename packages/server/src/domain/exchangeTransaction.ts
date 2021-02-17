@@ -1,5 +1,5 @@
-import { ExchangeRate } from "./exchangeRate";
-import { Money } from "./money";
+import { ExchangeRate } from './exchangeRate';
+import { Money } from './money';
 
 export interface ExchangeTransaction {
     readonly baseMoney: Money;
@@ -9,10 +9,16 @@ export interface ExchangeTransaction {
     readonly date: Date;
 }
 
-export const newTransaction = (baseMoney: Money, usdMoney: Money, rate: ExchangeRate, targetMoney: Money, date: Date): ExchangeTransaction => ({
+export const newTransaction = (
+    baseMoney: Money,
+    usdMoney: Money,
+    rate: ExchangeRate,
+    targetMoney: Money,
+    date: Date,
+): ExchangeTransaction => ({
     baseMoney,
     usdMoney,
     rate,
     targetMoney,
-    date
+    date,
 });

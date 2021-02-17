@@ -1,0 +1,8 @@
+query getExchangeQuery {
+    currencies,
+    stats {
+        popularCurrency,
+        totalExchangedInUSD,
+        exchangedCount
+    }
+}

@@ -1,6 +1,6 @@
-import { exchangeMoney, ExchangeRate } from "../domain/exchangeRate";
-import { ExchangeTransaction, newTransaction } from "../domain/exchangeTransaction";
-import { Money } from "../domain/money";
+import { exchangeMoney, ExchangeRate } from '../domain/exchangeRate';
+import { ExchangeTransaction, newTransaction } from '../domain/exchangeTransaction';
+import { Money } from '../domain/money';
 
 interface ExchangeParameters {
     readonly money: Money;
@@ -10,8 +10,8 @@ interface ExchangeParameters {
 export const exchange = async (
     parameters: ExchangeParameters,
     fetchExchangeRate: (base: string) => Promise<ExchangeRate>,
-    saveExchangeTransaction: (transaction: ExchangeTransaction) => Promise<void>
-) => {
+    saveExchangeTransaction: (transaction: ExchangeTransaction) => Promise<void>,
+): Promise<Money> => {
     const exchangeRate = await fetchExchangeRate(parameters.money.currency);
     const usdMoney = exchangeMoney(exchangeRate, parameters.money, 'USD');
     const targetMoney = exchangeMoney(exchangeRate, parameters.money, parameters.targetCurrency);

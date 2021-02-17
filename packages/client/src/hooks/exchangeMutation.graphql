@@ -1,0 +1,6 @@
+mutation exchangeMutation ($money: MoneyInput!, $targetCurrency: String!) {
+    exchange(money: $money, targetCurrency: $targetCurrency) {
+        amount,
+        currency
+    }
+}
