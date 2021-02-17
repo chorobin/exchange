@@ -1,4 +1,4 @@
-import { Grid, Heading, Text, Button, Input, GridProps, Box } from '@chakra-ui/react';
+import { Grid, Heading, Text, Button, Input, GridProps, Box, FormLabel, FormControl } from '@chakra-ui/react';
 import * as React from 'react';
 import { Currencies } from '../Currencies/Currencies';
 import { RiExchangeDollarFill } from 'react-icons/ri';
@@ -48,29 +48,37 @@ export const Exchange: React.FunctionComponent<
             </Box>
             Exchange your money
         </Heading>
-        <Text>You send.</Text>
-        <Input
-            gridArea="baseMoney"
-            isInvalid={isNaN(+amount)}
-            onChange={(e) => onAmountChanged(e.target.value)}
-            value={amount}
-            isDisabled={isExchanging}
-        ></Input>
-        <Currencies
-            gridArea="baseCurrency"
-            currencies={currencies}
-            onChange={(e) => onCurrencyChanged(e.target.value)}
-            value={currency}
-            isDisabled={isExchanging}
-        />
-        <Input gridArea="destinationMoney" isDisabled defaultValue={destinationAmount} />
-        <Currencies
-            gridArea="destinationCurrency"
-            currencies={currencies}
-            onChange={(e) => onDestinationCurrencyChanged(e.target.value)}
-            value={destinationCurrency}
-            isDisabled={isExchanging}
-        />
+        <FormControl id="money" gridArea="baseMoney">
+            <FormLabel>Base Amount</FormLabel>
+            <Input
+                isInvalid={isNaN(+amount)}
+                onChange={(e) => onAmountChanged(e.target.value)}
+                value={amount}
+                isDisabled={isExchanging}
+            ></Input>
+        </FormControl>
+        <FormControl gridArea="baseCurrency">
+            <FormLabel>Base Currency</FormLabel>
+            <Currencies
+                currencies={currencies}
+                onChange={(e) => onCurrencyChanged(e.target.value)}
+                value={currency}
+                isDisabled={isExchanging}
+            />
+        </FormControl>
+        <FormControl gridArea="destinationMoney">
+            <FormLabel>Destination Amount</FormLabel>
+            <Input isDisabled defaultValue={destinationAmount} />
+        </FormControl>
+        <FormControl id="destinationCurrency" gridArea="destinationCurrency">
+            <FormLabel>Destination Currency</FormLabel>
+            <Currencies
+                currencies={currencies}
+                onChange={(e) => onDestinationCurrencyChanged(e.target.value)}
+                value={destinationCurrency}
+                isDisabled={isExchanging}
+            />
+        </FormControl>
         <Button
             colorScheme="green"
             gridArea="exchangeButton"

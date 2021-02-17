@@ -9,11 +9,13 @@ interface Stats {
 
 const getPopularDestinationCurrency = (exchangedTransactions: ExchangeTransaction[]) => {
     const countedCurrencies = exchangedTransactions.reduce((countedCurrencies, exchangeTransaction) => {
-        countedCurrencies[exchangeTransaction.targetMoney.currency] += 1;
+        const count = countedCurrencies[exchangeTransaction.targetMoney.currency];
+        countedCurrencies[exchangeTransaction.targetMoney.currency] = count ? count + 1 : 1;
         return countedCurrencies;
     }, {} as { [key: string]: number });
-    const maxCurrency = Object.entries(countedCurrencies).reduce((maxCurrency, currency) =>
-        maxCurrency[1] > currency[1] ? maxCurrency : currency,
+    const maxCurrency = Object.entries(countedCurrencies).reduce(
+        (maxCurrency, currency) => (maxCurrency[1] > currency[1] ? maxCurrency : currency),
+        ['N/A', 0],
     );
     return maxCurrency[0];
 };
