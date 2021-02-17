@@ -1,0 +1,17 @@
+# Quick start
+You can run this project via docker
+
+```
+docker-compose up
+```
+
+- The frontend is served on http://localhost:4040
+- The backend is served on http://localhost:4000/graphql
+
+You can also run this project via lerna
+
+```
+yarn global add lerna
+lerna bootstrap
+lerna run start --parallel
+```
