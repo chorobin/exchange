@@ -6,7 +6,6 @@ COPY "lerna.json" "lerna.json"
 COPY "yarn.lock" "yarn.lock"
 COPY "packages/client/package.json" "packages/client/package.json"
 RUN yarn install
-RUN yarn run lerna bootstrap
 
 COPY . ./
 RUN yarn run lerna bootstrap
